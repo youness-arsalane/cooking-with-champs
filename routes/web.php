@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\RecipeController;
+use App\Models\Recipe;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [RecipeController::class, 'index']);
+
+Route::get('/recipes/create', [RecipeController::class, 'create'])->middleware('auth');
+
+Route::post('/recipes', [RecipeController::class, 'store'])->middleware('auth');
+
+Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->middleware('auth');
+
+Route::put('/recipes/{recipe}', [RecipeController::class, 'update'])->middleware('auth');
+
+Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy'])->middleware('auth');
+
+Route::get('/recipes/manage', [RecipeController::class, 'manage'])->middleware('auth');
+
+Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 
 Auth::routes();
 
