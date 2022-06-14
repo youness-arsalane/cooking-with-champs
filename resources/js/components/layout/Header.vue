@@ -13,6 +13,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Register</a>
                         </li>
+                        <li class="nav-item">
+                            <router-link to="/add-recipe" class="nav-link">Add recipe</router-link>
+                        </li>
                     </ul>
                 </div>
             </div>

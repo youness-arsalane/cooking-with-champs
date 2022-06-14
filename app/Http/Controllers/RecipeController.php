@@ -22,27 +22,23 @@ class RecipeController extends Controller
             ]);
     }
   
-    public function create(){
-        return view('recipes.create');
-    }
-
-    public function store(Request $request){
+    public function create(Request $request){
         $formFields = $request->validate([
             'title' => ['required', Rule::unique('recipes', 'title')],
             'tags' => 'required',
             'description' => 'required'
-    
+
         ]);
 
         if($request->hasFile('logo')){
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
-        
-        $formFields['user_id'] = auth()->id();
+
+        $formFields['user_id'] = 1;
 
         Recipe::create($formFields);
 
-        return redirect('/')->with('message', 'Recipe created successfully!');
+        return response()->json('Artikel succesvol toegevoegd!');
     }
 
     public function edit(Recipe $recipe){

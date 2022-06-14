@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/recipes/create', [RecipeController::class, 'create']);
+Route::post('/recipes/create', [RecipeController::class, 'create']);
 
 Route::get('recipes', [RecipeController::class, 'index']);
 
