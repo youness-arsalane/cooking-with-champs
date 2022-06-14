@@ -16,22 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [RecipeController::class, 'index']);
-
-Route::get('/recipes/create', [RecipeController::class, 'create'])->middleware('auth');
-
-Route::post('/recipes', [RecipeController::class, 'store'])->middleware('auth');
-
-Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->middleware('auth');
-
-Route::put('/recipes/{recipe}', [RecipeController::class, 'update'])->middleware('auth');
-
-Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy'])->middleware('auth');
-
-Route::get('/recipes/manage', [RecipeController::class, 'manage'])->middleware('auth');
-
-Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('{any}', function () {
+    return view('app');
+})->where('any', '.*');

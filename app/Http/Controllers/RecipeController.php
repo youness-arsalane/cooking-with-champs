@@ -11,9 +11,9 @@ class RecipeController extends Controller
 {
     public function index(){
         // without pagination use get instead of pagination
-        return view('recipes.index', [
-            'recipes' => Recipe::latest()->filter(request(['tag', 'search']))->paginate(6)
-        ]);
+        return response()->json([
+            'recipes'=> Recipe::latest()->filter(request(['tag', 'search']))->paginate(6)
+        ], 200);
     }
   
     public function show(Recipe $recipe){

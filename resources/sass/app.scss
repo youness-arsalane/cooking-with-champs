@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.main-header {
+    &__sub-header {
+        background-color: #EF3B2D;
+    }
+}
