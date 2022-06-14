@@ -2,7 +2,7 @@
     <div>
         <div class="card">
             <div class="card-header">
-                <h3 class="text-center">Add recipe</h3>
+                <h3 class="text-center">Edit recipe</h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -25,7 +25,7 @@
                                 <label>Recipe Description</label>
                                 <textarea required class="form-control" rows="3" v-model="recipe.description"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-danger">Create</button>
+                            <button type="submit" class="btn btn-danger">Edit</button>
                         </form>
                     </div>
                 </div>
@@ -43,10 +43,23 @@ export default {
             recipe: {},
         }
     },
+
+    mounted() {
+        this.getRecipe()
+    },
+
     methods: {
+        getRecipe() {
+            axios
+                .get(`http://localhost:8000/api/recipes/${this.$route.params.id}`)
+                .then(response => {
+                    this.recipe = response.data.recipes;
+                });
+        },
+
         async addRecipe() {
             await axios
-                .post('http://localhost:8000/api/recipes/create', this.recipe)
+                .put(`http://localhost:8000/api/recipes/${this.$route.params.id}`, this.recipe)
                 .then(response => (
                     this.$router.push('/')
                 ))

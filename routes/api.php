@@ -27,8 +27,8 @@ Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit']);
 
 Route::put('/recipes/{recipe}', [RecipeController::class, 'update']);
 
-Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy']);
+Route::delete('/recipes/{id}', [RecipeController::class, 'destroy']);
 
 Route::get('/recipes/manage', [RecipeController::class, 'manage']);
 
-Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
+Route::get('/recipes/{id}', [RecipeController::class, 'show']);

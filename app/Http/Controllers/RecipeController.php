@@ -16,10 +16,10 @@ class RecipeController extends Controller
         ], 200);
     }
   
-    public function show(Recipe $recipe){
-        return view('recipes.show', [
-            'recipe' => $recipe
-            ]);
+    public function show($id){
+        return response()->json([
+            'recipes'=> Recipe::find($id)
+        ], 200);
     }
   
     public function create(Request $request){
@@ -47,9 +47,9 @@ class RecipeController extends Controller
 
     public function update(Request $request, Recipe $recipe){
 
-        if($recipe->user_id != auth()->id()){
-            abort('403', 'Unauthorized action');
-        }
+//        if($recipe->user_id != auth()->id()){
+//            abort('403', 'Unauthorized action');
+//        }
         
         $formFields = $request->validate([
             'title' => ['required'],
@@ -63,15 +63,18 @@ class RecipeController extends Controller
         
         $recipe->update($formFields);
 
-        return back()->with('message', 'Recipe updated successfully!');
+        return response()->json('Recipe update successfully!');
     }
 
-    public function destroy(Recipe $recipe){
-        if($recipe->user_id != auth()->id()){
-            abort('403', 'Unauthorized action');
-        }
-        $recipe->delete();
-        return redirect('/')->with('message', 'Recipe deleted successfully!');
+    public function destroy(Recipe $recipe, $id){
+//        if($recipe->user_id != auth()->id()){
+//            abort('403', 'Unauthorized action');
+//        }
+        $recipe->findOrFail($id)->delete();
+
+        return response()->json([
+            'recipes'=> 'Successfully destroyed!'
+        ], 200);
     }
 
     public function manage(){
