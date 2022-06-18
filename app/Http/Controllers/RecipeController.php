@@ -12,7 +12,14 @@ class RecipeController extends Controller
     public function index(){
         // without pagination use get instead of pagination
         return response()->json([
-            'recipes'=> Recipe::latest()->filter(request(['tag', 'search']))->paginate(6)
+            'recipes'=> Recipe::latest()->paginate(6)
+        ], 200);
+    }
+
+    public function filter($name){
+        // without pagination use get instead of pagination
+        return response()->json([
+            'recipes'=> Recipe::latest()->where('title', 'like', '%' . $name . '%')->paginate(6)
         ], 200);
     }
   
