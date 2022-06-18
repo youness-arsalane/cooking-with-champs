@@ -17,7 +17,7 @@
                                 <input required type="text" class="form-control" v-model="recipe.tags">
                             </div>
                             <div class="form-group">
-                                <label>Company Logo</label>
+                                <label>Image</label>
                                 <br>
                                 <input required type="file" accept="image/png, image/jpeg" @change="recipe.logo">
                             </div>
