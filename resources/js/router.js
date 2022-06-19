@@ -3,6 +3,7 @@ import Dashboard from "./components/Dashboard";
 import AddRecipe from "./components/AddRecipe";
 import Recipe from "./components/Recipe";
 import Edit from "./components/Edit";
+import AddMessage from "./components/AddMessage";
 
 const routes = [
     {
@@ -26,6 +27,12 @@ const routes = [
         name: 'recipe-edit',
         props: true,
         component: Edit,
+    },
+    {
+        path: '/recipe/:id/add-message',
+        name: 'add-message',
+        props: true,
+        component: AddMessage,
     },
 ]
 

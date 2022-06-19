@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
+use App\Models\RecipeComment;
+use App\Models\RecipeStep;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +27,7 @@ class RecipeController extends Controller
   
     public function show($id){
         return response()->json([
-            'recipes'=> Recipe::find($id)
+            'recipes'=> Recipe::with('recipeComments')->get()->find($id)
         ], 200);
     }
   
@@ -45,7 +47,24 @@ class RecipeController extends Controller
 
         Recipe::create($formFields);
 
-        return response()->json('Artikel succesvol toegevoegd!');
+        return response()->json('Recipe successfully added!');
+    }
+
+    public function addComment(Request $request, $id){
+        $formFields = $request->validate([
+            'content' => 'required'
+
+        ]);
+
+        $formFields['user_id'] = 1;
+
+        $formFields['recipe_id'] = $id;
+
+        $formFields['parent_id'] = 1;
+
+        RecipeComment::create($formFields);
+
+        return response()->json('Recipe comment successfully added!');
     }
 
     public function edit(Recipe $recipe){

@@ -19,7 +19,7 @@ class Recipe extends Model
 
     public function recipeComments()
     {
-        return $this->hasMany(RecipeComment::class);
+        return $this->hasMany(RecipeComment::class)->with('user');
     }
 
     public function scopeFilter($query, array $filters){

@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(RecipeSeeder::class);
 
         $user = User::factory()->create([
             'name' => 'John Doe',
             'email' => 'john@mail.com'
         ]);
 
+        $this->call(RecipeSeeder::class);
 
 
         // Recipe::create([

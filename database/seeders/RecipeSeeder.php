@@ -78,7 +78,7 @@ When ready to serve, spoon the stroganoff into the cob. Serve with the garlic br
         DB::table('recipes')->insert([
             'user_id' => 1,
             'title' => 'Vegetarian Cabbage Rolls',
-            'logo' => 'WS_Winter_Cobanoff_001.jpeg',
+            'logo' => 'whisk_rosella_cabbage_rolls_vegetarian.jpeg',
             'tags' => 'dinner',
             'description' => 'Steam cabbage leaves and set aside to cool (see tips). Heat oil in a large deep pan and cook onion, garlic and mushroom for 3 minutes. Add carrot and zucchini and continue cooking for a further 5 minutes or until softened. Transfer to a bowl and cool slightly
 Add unheated 7 ancient grains sachet and eggs. Season with salt and pepper. Add 2 tbsp of condensed tomato soup to the mixture and mix well. Set aside
