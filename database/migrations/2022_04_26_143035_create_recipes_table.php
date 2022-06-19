@@ -15,14 +15,13 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('image_filename');
-            $table->text('introduction');
-            $table->text('content');
-            $table->boolean('active');
-            $table->boolean('in_spotlight');
-            $table->timestamps();
+            $table->string('logo')->nullable();
+            $table->string('tags');
+            $table->text('description');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

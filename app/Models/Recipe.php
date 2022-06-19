@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Recipe extends Model
 {
-    protected $fillable = ['title', 'slug', 'image_filename', 'introduction', 'content', 'active', 'in_spotlight'];
-
     use HasFactory;
+
+    protected $fillable = ['title', 'description', 'tags', 'logo', 'user_id'];
 
     public function recipeSteps()
     {
@@ -19,18 +19,23 @@ class Recipe extends Model
 
     public function recipeComments()
     {
-        return $this->hasMany(RecipeComment::class);
+        return $this->hasMany(RecipeComment::class)->with('user');
     }
 
-    public function getURL()
-    {
-        return URL::to('recipes/' . $this->slug);
+    public function scopeFilter($query, array $filters){
+        if($filters['tag'] ?? false) {
+            $query->where('tags', 'like', '%' . request('tag') . '%');
+        }
+
+        if($filters['search'] ?? false) {
+            $query->where('title', 'like', '%' . request('search') . '%')
+            ->orWhere('description', 'like', '%' . request('search') . '%')
+            ->orWhere('tags', 'like', '%' . request('search') . '%');
+        }
     }
 
-    public function imageURL()
-    {
-        return (!empty($this->image_filename))
-            ? URL::to('images/recipes') . '/' . $this->id . '/' . $this->image_filename
-            : URL::to('images/no-image.png');
+    // Relate recipe to user
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
