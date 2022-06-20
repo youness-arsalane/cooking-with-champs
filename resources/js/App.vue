@@ -4,7 +4,7 @@
             <notifications group="notification" />
             <Header/>
             <br/>
-            <div class="container">
+            <div class="container cooking-container">
                 <router-view/>
             </div>
             <Footer/>
