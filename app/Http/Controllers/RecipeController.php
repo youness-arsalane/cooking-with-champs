@@ -14,7 +14,8 @@ class RecipeController extends Controller
     public function index(){
         // without pagination use get instead of pagination
         return response()->json([
-            'recipes'=> Recipe::latest()->paginate(6)
+            'recipes'=> Recipe::latest()->paginate(6),
+            'user' => Auth::user()
         ], 200);
     }
 

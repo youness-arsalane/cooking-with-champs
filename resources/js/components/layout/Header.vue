@@ -7,17 +7,17 @@
                         <li class="nav-item">
                             <router-link to="/" class="nav-link">Home</router-link>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
-                        </li>
-                        <li class="nav-item">
+                        <li v-if="!loggedIn" class="nav-item">
                             <router-link to="/login" class="nav-link">Login</router-link>
                         </li>
-                        <li class="nav-item">
+                        <li v-if="!loggedIn" class="nav-item">
                             <router-link to="/register" class="nav-link">Register</router-link>
                         </li>
-                        <li class="nav-item">
+                        <li v-if="loggedIn" class="nav-item">
                             <router-link to="/add-recipe" class="nav-link">Add recipe</router-link>
+                        </li>
+                        <li v-if="loggedIn" class="nav-item">
+                            <div class="nav-link">Welkom {{ user?.name }}</div>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +33,15 @@
 
 <script>
 export default {
-    name: "Header"
+    computed: {
+        loggedIn () {
+            return this.$store.getters.getLoggedIn
+        },
+
+        user () {
+            return this.$store.getters.getUser.data
+        },
+    }
 }
 </script>
 

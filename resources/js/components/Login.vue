@@ -39,7 +39,9 @@ export default {
             await axios
                 .post('http://localhost:8000/api/login', this.login)
                 .then(response => (
-                    this.$router.push('/')
+                    this.$store.dispatch('setLoggedIn'),
+                        this.$store.dispatch('setUser', response),
+                        this.$router.push('/')
                 ))
                 .catch(error => console.log(error))
         }
