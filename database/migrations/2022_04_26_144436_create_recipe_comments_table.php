@@ -17,7 +17,6 @@ class CreateRecipeCommentsTable extends Migration
             $table->id();
             $table->foreignId('recipe_id')->references('id')->on('recipes')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('parent_id')->nullable();
             $table->text('content');
             $table->timestamps();
         });
