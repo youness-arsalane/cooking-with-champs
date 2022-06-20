@@ -5,6 +5,7 @@ import Recipe from "./components/Recipe";
 import Edit from "./components/Edit";
 import AddMessage from "./components/AddMessage";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 const routes = [
     {
@@ -39,6 +40,11 @@ const routes = [
         path: '/login',
         name: 'login',
         component: Login,
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register,
     },
 ]
 
