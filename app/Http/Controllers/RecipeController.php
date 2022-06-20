@@ -44,7 +44,7 @@ class RecipeController extends Controller
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
-        $formFields['user_id'] = 1;
+        $formFields['user_id'] = $request->get('user_id');
 
         Recipe::create($formFields);
 
@@ -57,7 +57,7 @@ class RecipeController extends Controller
 
         ]);
 
-        $formFields['user_id'] = 1;
+        $formFields['user_id'] = $request->get('user_id');
 
         $formFields['recipe_id'] = $id;
 

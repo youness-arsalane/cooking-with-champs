@@ -10,8 +10,8 @@
                          data-href="https://www.your-domain.com/your-page.html"
                          data-layout="button_count">
                     </div>
-                    <button v-if="loggedIn" @click="changeRoutes(recipe.id, 'edit')" type="button" class="btn btn-success mr-1">Edit</button>
-                    <button v-if="loggedIn" @click="deleteRecipe(recipe.id)" type="button" class="btn btn-danger">Delete</button>
+                    <button v-if="loggedIn && user?.role === 1" @click="changeRoutes(recipe.id, 'edit')" type="button" class="btn btn-success mr-1">Edit</button>
+                    <button v-if="loggedIn && user?.role === 1" @click="deleteRecipe(recipe.id)" type="button" class="btn btn-danger">Delete</button>
                 </div>
             </div>
         </div>
@@ -51,7 +51,11 @@ export default {
     computed: {
         loggedIn () {
             return this.$store.getters.getLoggedIn
-        }
+        },
+
+        user () {
+            return this.$store.getters.getUser.data
+        },
     },
 
     mounted() {

@@ -25,6 +25,7 @@
                                 <label>Recipe Description</label>
                                 <textarea required class="form-control" rows="3" v-model="recipe.description"></textarea>
                             </div>
+                            <input name="user_id" style="display: none;" :value="recipe.user_id"/>
                             <button type="submit" class="btn btn-danger">Create</button>
                         </form>
                     </div>
@@ -43,8 +44,14 @@ export default {
             recipe: {},
         }
     },
+
+    user () {
+        return this.$store.getters.getUser.data
+    },
+
     methods: {
         async addRecipe() {
+            this.recipe.user_id = this.$store.getters.getUser.data.id
             await axios
                 .post('http://localhost:8000/api/recipes/create', this.recipe)
                 .then(response => (

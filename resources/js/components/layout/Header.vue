@@ -13,7 +13,7 @@
                         <li v-if="!loggedIn" class="nav-item">
                             <router-link to="/register" class="nav-link">Register</router-link>
                         </li>
-                        <li v-if="loggedIn" class="nav-item">
+                        <li v-if="loggedIn && user?.role === 1" class="nav-item">
                             <router-link to="/add-recipe" class="nav-link">Add recipe</router-link>
                         </li>
                         <li v-if="loggedIn" class="nav-item">
