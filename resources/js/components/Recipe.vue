@@ -6,12 +6,12 @@
                 <div class="card-body">
                     <h1 class="card-title">{{ recipe.title }}</h1>
                     <p class="card-text">{{ recipe.description }}</p>
-                    <div class="fb-share-button"
+                    <div v-if="!loggedIn" class="fb-share-button"
                          data-href="https://www.your-domain.com/your-page.html"
                          data-layout="button_count">
                     </div>
-                    <button @click="changeRoutes(recipe.id, 'edit')" type="button" class="btn btn-success mr-1">Edit</button>
-                    <button @click="deleteRecipe(recipe.id)" type="button" class="btn btn-danger">Delete</button>
+                    <button v-if="loggedIn && user?.role === 1" @click="changeRoutes(recipe.id, 'edit')" type="button" class="btn btn-success mr-1">Edit</button>
+                    <button v-if="loggedIn && user?.role === 1" @click="deleteRecipe(recipe.id)" type="button" class="btn btn-danger">Delete</button>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                                 <p class="card-text">{{ comment.content }}</p>
                             </div>
                         </div>
-                        <button @click="changeRoutes(recipe.id, 'message')" type="button" class="btn btn-success mt-3">Place message</button>
+                        <button v-if="loggedIn" @click="changeRoutes(recipe.id, 'message')" type="button" class="btn btn-success mt-3">Place message</button>
                     </div>
                 </div>
             </div>
@@ -48,9 +48,20 @@ export default {
             recipe: null
         }
     },
+    computed: {
+        loggedIn () {
+            return this.$store.getters.getLoggedIn
+        },
+
+        user () {
+            return this.$store.getters.getUser.data
+        },
+    },
+
     mounted() {
         this.getRecipe()
     },
+
     methods: {
         changeRoutes(id, url) {
             if (url === 'edit') {

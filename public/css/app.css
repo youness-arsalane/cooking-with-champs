@@ -11290,6 +11290,10 @@ textarea.form-control-lg {
   background-color: #EF3B2D;
 }
 
+.cooking-container {
+  padding-bottom: 100px;
+}
+
 .main-footer {
   background-color: #EF3B2D;
   position: fixed;

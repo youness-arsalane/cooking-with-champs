@@ -12,6 +12,7 @@
                                 <label>Message</label>
                                 <textarea required class="form-control" rows="3" v-model="message.content"></textarea>
                             </div>
+                            <input name="user_id" style="display: none;" :value="message.user_id"/>
                             <button type="submit" class="btn btn-danger">Create</button>
                         </form>
                     </div>
@@ -30,8 +31,14 @@ export default {
             message: {},
         }
     },
+
+    user () {
+        return this.$store.getters.getUser.data
+    },
+
     methods: {
         async addMessage() {
+            this.message.user_id = this.$store.getters.getUser.data.id
             await axios
                 .post(`http://localhost:8000/api/recipes/${this.$route.params.id}/message`, this.message)
                 .then(response => (

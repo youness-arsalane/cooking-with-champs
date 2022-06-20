@@ -22,7 +22,8 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            recipes: null
+            recipes: null,
+            user: this.$store.getters.getUser.data
         }
     },
 

@@ -14,7 +14,8 @@ class RecipeController extends Controller
     public function index(){
         // without pagination use get instead of pagination
         return response()->json([
-            'recipes'=> Recipe::latest()->paginate(6)
+            'recipes'=> Recipe::latest()->paginate(6),
+            'user' => Auth::user()
         ], 200);
     }
 
@@ -43,7 +44,7 @@ class RecipeController extends Controller
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
-        $formFields['user_id'] = 1;
+        $formFields['user_id'] = $request->get('user_id');
 
         Recipe::create($formFields);
 
@@ -56,7 +57,7 @@ class RecipeController extends Controller
 
         ]);
 
-        $formFields['user_id'] = 1;
+        $formFields['user_id'] = $request->get('user_id');
 
         $formFields['recipe_id'] = $id;
 
