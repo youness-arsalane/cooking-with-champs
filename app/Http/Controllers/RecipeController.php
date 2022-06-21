@@ -7,6 +7,7 @@ use App\Models\RecipeCategory;
 use App\Models\RecipeComment;
 use App\Models\RecipeStep;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class RecipeController extends Controller
     {
         // without pagination use get instead of pagination
         return response()->json([
-            'recipes' => Recipe::latest()->paginate(6),
+            'recipes' => Recipe::latest()->paginate(),
             'user' => Auth::user()
         ], 200);
     }
@@ -67,13 +68,11 @@ class RecipeController extends Controller
         $formFields = $request->validate([
             'title' => ['required', Rule::unique('recipes', 'title')],
             'tags' => 'required',
-            'description' => 'required'
-
+            'description' => 'required',
+            'logo' => 'required',
         ]);
 
-        if ($request->hasFile('logo')) {
-            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
-        }
+        Storage::disk('public')->put($request->get('logo'), $request->file('logo'));
 
         $formFields['user_id'] = $request->get('user_id');
 

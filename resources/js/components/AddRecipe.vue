@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <label>Image</label>
                                 <br>
-                                <input type="file" accept="image/png, image/jpeg" @change="recipe.logo">
+                                <input type="file" accept="image/png, image/jpeg" @change="onChange">
                             </div>
                             <div class="form-group">
                                 <label>Recipe Description</label>
@@ -50,6 +50,11 @@ export default {
     },
 
     methods: {
+        onChange(e) {
+            console.log(e.target.files[0])
+            this.recipe.logo = e.target.files[0].name;
+        },
+
         async addRecipe() {
             this.recipe.user_id = this.$store.getters.getUser.data.id
             await axios
