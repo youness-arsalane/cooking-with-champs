@@ -35,6 +35,25 @@ class RecipeController extends Controller
         ], 200);
     }
 
+    public function getComment($id)
+    {
+        return response()->json([
+            'message' => RecipeComment::get()->find($id)
+        ], 200);
+    }
+
+    public function editComment(Request $request, RecipeComment $comment)
+    {
+
+        $formFields = $request->validate([
+            'content' => 'required'
+        ]);
+        
+        $comment->update($formFields);
+
+        return response()->json('Comment updated successfully!');
+    }
+
     public function create(Request $request)
     {
         $formFields = $request->validate([
@@ -59,7 +78,6 @@ class RecipeController extends Controller
     {
         $formFields = $request->validate([
             'content' => 'required'
-
         ]);
 
         $formFields['user_id'] = $request->get('user_id');

@@ -25,6 +25,9 @@
                         <li v-for="navCategory in navCategories" class="nav-item">
                             <router-link :to="`/categories/${navCategory.id}`" class="nav-link">{{ navCategory.name }}</router-link>
                         </li>
+                        <li v-if="!loggedIn || loggedIn && user?.role === 2" class="nav-item">
+                            <router-link to="/contact" class="nav-link">Contact</router-link>
+                        </li>
                         <li v-if="loggedIn" class="nav-item">
                             <div class="nav-link">Welcome {{ user?.name }}</div>
                         </li>

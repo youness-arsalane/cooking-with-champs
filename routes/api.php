@@ -7,6 +7,7 @@ use App\Http\Controllers\SpoonacularController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,9 @@ Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 
 Route::post('/recipes/create', [RecipeController::class, 'create']);
-Route::post('/recipes/{id}/message', [RecipeController::class, 'addComment']);
+Route::get('/recipes/message/{id}', [RecipeController::class, 'getComment']);
+Route::put('/recipes/message/{comment}', [RecipeController::class, 'editComment']);
+Route::get('/recipes/{id}/message/{', [RecipeController::class, 'addComment']);
 Route::get('/recipes', [RecipeController::class, 'index']);
 Route::get('/recipes/filter/{name}', [RecipeController::class, 'filter']);
 Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit']);
@@ -51,6 +54,7 @@ Route::put('/categories/{category}', [CategoryController::class, 'update']);
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
 
+Route::post('/contact', [ContactController::class, 'send']);
 /*
 Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/admin/categories/add', [CategoryController::class, 'add'])->name('categories/add');

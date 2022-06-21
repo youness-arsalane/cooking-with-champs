@@ -12,6 +12,8 @@ import Categories from "./components/Categories";
 import CategoryAdd from "./components/CategoryAdd";
 import CategoryDetail from "./components/CategoryDetail";
 import CategoryEdit from "./components/CategoryEdit";
+import Contact from "./components/Contact";
+import EditMessage from "./components/EditMessage";
 
 const routes = [
     {
@@ -83,7 +85,18 @@ const routes = [
         name: 'category-edit',
         props: true,
         component: CategoryEdit,
-    }
+    },
+    {
+        path: '/contact',
+        name: 'contact',
+        component: Contact,
+    },
+    {
+        path: '/recipe/:userId/edit-message/:messageId',
+        name: 'edit-message',
+        props: true,
+        component: EditMessage,
+    },
 ]
 
 const router = createRouter({

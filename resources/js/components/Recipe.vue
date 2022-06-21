@@ -26,6 +26,7 @@
                             <div class="card-body">
                                 <p class="card-title text-primary">{{ comment.user.name }}</p>
                                 <p class="card-text">{{ comment.content }}</p>
+                                <button v-if="loggedIn && comment.user_id === user?.id" @click="changeRouteEditMessage(recipe.id, comment.id)" type="button" class="btn btn-primary mt-3">Edit message</button>
                             </div>
                         </div>
                         <button v-if="loggedIn" @click="changeRoutes(recipe.id, 'message')" type="button" class="btn btn-success mt-3">Place message</button>
@@ -63,6 +64,10 @@ export default {
     },
 
     methods: {
+        changeRouteEditMessage(userId, messageId) {
+            this.$router.push(`/recipe/${userId}/edit-message/${messageId}`)
+        },
+
         changeRoutes(id, url) {
             if (url === 'edit') {
                 this.$router.push(`/recipe/edit/${id}`)
