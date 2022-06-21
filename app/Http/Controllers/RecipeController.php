@@ -60,7 +60,7 @@ class RecipeController extends Controller
         $formFields['user_id'] = $request->get('user_id');
 
         $formFields['recipe_id'] = $id;
-        
+
         RecipeComment::create($formFields);
 
         return response()->json('Recipe comment successfully added!');
