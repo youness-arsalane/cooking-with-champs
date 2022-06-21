@@ -11,6 +11,7 @@
                          data-layout="button_count">
                     </div>
                     <button v-if="loggedIn && user?.role === 1" @click="changeRoutes(recipe.id, 'edit')" type="button" class="btn btn-success mr-1">Edit</button>
+                    <button v-if="loggedIn && user?.role === 2" @click="markFav(recipe.title)" type="button" class="btn btn-success mr-1">Mark as favourite</button>
                     <button v-if="loggedIn && user?.role === 1" @click="deleteRecipe(recipe.id)" type="button" class="btn btn-danger">Delete</button>
                 </div>
             </div>
@@ -70,6 +71,10 @@ export default {
     },
 
     methods: {
+        markFav(name) {
+            this.$store.dispatch('markFav', name)
+        },
+
         changeRouteEditMessage(userId, messageId) {
             this.$router.push(`/recipe/${userId}/edit-message/${messageId}`)
         },

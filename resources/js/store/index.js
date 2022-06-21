@@ -5,7 +5,8 @@ const store = createStore({
     state () {
         return {
             loggedIn: false,
-            user: {}
+            user: {},
+            fav: []
         }
     },
 
@@ -16,6 +17,10 @@ const store = createStore({
         
         setUser(context, user) {
             context.commit('setUser', user)
+        },
+
+        markFav(context, id) {
+            context.commit('markFav', id)
         }
     },
 
@@ -27,6 +32,10 @@ const store = createStore({
         getLoggedIn (state) {
             return state.loggedIn
         },
+
+        getFavourite (state) {
+            return state.fav
+        },
     },
 
     mutations: {
@@ -36,6 +45,10 @@ const store = createStore({
 
         setUser (state, user) {
             state.user = user
+        },
+
+        markFav(state, id) {
+            state.fav.push(id)
         }
     }
 })

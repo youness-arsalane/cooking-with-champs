@@ -72,8 +72,6 @@ class RecipeController extends Controller
             'logo' => 'required',
         ]);
 
-        Storage::disk('public')->put($request->get('logo'), $request->file('logo'));
-
         $formFields['user_id'] = $request->get('user_id');
 
         Recipe::create($formFields);
