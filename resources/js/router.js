@@ -14,6 +14,7 @@ import CategoryDetail from "./components/CategoryDetail";
 import CategoryEdit from "./components/CategoryEdit";
 import Contact from "./components/Contact";
 import EditMessage from "./components/EditMessage";
+import Favourite from "./components/Favourite";
 
 const routes = [
     {
@@ -96,6 +97,11 @@ const routes = [
         name: 'edit-message',
         props: true,
         component: EditMessage,
+    },
+    {
+        path: '/favourite',
+        name: 'favourite',
+        component: Favourite,
     },
 ]
 

@@ -22,6 +22,9 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav">
+                        <li v-if="loggedIn && user?.role === 2" class="nav-item">
+                            <router-link to="/favourite" class="nav-link">Favourite</router-link>
+                        </li>
                         <li class="nav-item">
                             <router-link to="/contact" class="nav-link py-0 mt-2 pr-3" style="border-right: 1px solid rgba(0, 0, 0, 0.55);">Contact</router-link>
                         </li>
