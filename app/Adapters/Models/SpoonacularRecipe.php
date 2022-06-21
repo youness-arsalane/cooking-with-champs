@@ -4,82 +4,123 @@ namespace App\Adapters\Models;
 
 use JsonSerializable;
 
-class Recipe implements JsonSerializable
+class SpoonacularRecipe extends SpoonacularModel implements JsonSerializable
 {
     /* @var $vegetarian boolean */
     private $vegetarian;
+
     /* @var $vegan boolean */
     private $vegan;
+
     /* @var $glutenFree boolean */
     private $glutenFree;
+
     /* @var $dairyFree boolean */
     private $dairyFree;
+
     /* @var $veryHealthy boolean */
     private $veryHealthy;
+
     /* @var $cheap boolean */
     private $cheap;
+
     /* @var $veryPopular boolean */
     private $veryPopular;
+
     /* @var $sustainable boolean */
     private $sustainable;
+
     /* @var $lowFodmap boolean */
     private $lowFodmap;
+
     /* @var $weightWatcherSmartPoints int */
     private $weightWatcherSmartPoints;
+
     /* @var $gaps string */
     private $gaps;
+
     /* @var $preparationMinutes int */
     private $preparationMinutes;
+
     /* @var $cookingMinutes int */
     private $cookingMinutes;
+
     /* @var $aggregateLikes int */
     private $aggregateLikes;
+
     /* @var $healthScore int */
     private $healthScore;
+
     /* @var $creditsText ?string */
     private $creditsText;
+
     /* @var $license string */
     private $license;
+
     /* @var $sourceName string */
     private $sourceName;
+
     /* @var $pricePerServing float */
     private $pricePerServing;
+
     /* @var $extendedIngredients array */
     private $extendedIngredients;
+
     /* @var $id int */
     private $id;
+
     /* @var $title string */
     private $title;
+
     /* @var $readyInMinutes int */
     private $readyInMinutes;
+
     /* @var $servings int */
     private $servings;
+
     /* @var $sourceUrl string */
     private $sourceUrl;
+
     /* @var $openLicense int */
     private $openLicense;
+
     /* @var $image string */
     private $image;
+
     /* @var $imageType string */
     private $imageType;
+
     /* @var $summary string */
     private $summary;
+
     /* @var $cuisines array */
     private $cuisines;
+
     /* @var $dishTypes array */
     private $dishTypes;
+
     /* @var $diets array */
     private $diets;
+
     /* @var $occasions array */
     private $occasions;
+
     /* @var $instructions string */
     private $instructions;
+
     /* @var $instructions array */
     private $analyzedInstructions;
+
     /* @var $originalId ?int */
     private $originalId;
+
     /* @var $spoonacularSourceUrl string */
     private $spoonacularSourceUrl;
+
+    public function __construct(array $data = [])
+    {
+        $this->populateByData($data);
+    }
 
     public function isVegetarian(): bool
     {
@@ -449,6 +490,16 @@ class Recipe implements JsonSerializable
     public function setSpoonacularSourceUrl(string $spoonacularSourceUrl): void
     {
         $this->spoonacularSourceUrl = $spoonacularSourceUrl;
+    }
+
+    public function populateByData(array $data): void
+    {
+        foreach ($data as $key => $value) {
+            $setter = 'set' . ucfirst($key);
+            if (method_exists($this, $setter)) {
+                $this->$setter($value);
+            }
+        };
     }
 
     public function jsonSerialize(): array

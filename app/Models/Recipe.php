@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Adapters\Models\SpoonacularRecipe;
+use App\Adapters\SpoonacularAdapter;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +23,25 @@ class Recipe extends Model
     public function recipeComments()
     {
         return $this->hasMany(RecipeComment::class)->with('user');
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public static function saveBySpoonacularRecipe(SpoonacularRecipe $spoonacularRecipe, string $userID): Recipe
+    {
+        $recipe = self::where('spoonacular_id', $spoonacularRecipe->getId())->first();
+
+        if ($recipe === null) {
+            $recipe = new self();
+        }
+
+        $recipe->user_id = $userID;
+        SpoonacularAdapter::populateModelBySpoonacularModel($spoonacularRecipe, $recipe);
+
+        $recipe->save();
+
+        return $recipe;
     }
 
     public function categories()

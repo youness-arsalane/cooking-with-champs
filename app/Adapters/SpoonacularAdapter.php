@@ -2,7 +2,11 @@
 
 namespace App\Adapters;
 
-use App\Adapters\Models\Recipe;
+use App\Adapters\Models\SpoonacularModel;
+use App\Adapters\Models\SpoonacularRecipe;
+use App\Models\Recipe;
+use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 
 class SpoonacularAdapter
@@ -12,7 +16,7 @@ class SpoonacularAdapter
 
     /**
      * @param int $limit
-     * @return Recipe[]
+     * @return SpoonacularRecipe[]
      */
     public function getRandomRecipes(int $limit = 10, bool $cached = true): array
     {
@@ -28,7 +32,39 @@ class SpoonacularAdapter
         return $this->translateResults($results, self::INSTANCE_RECIPE);
     }
 
-    private function translateResults(array $results, string $instance): array
+    /**
+     * @param SpoonacularModel $spoonacularModel
+     * @param Model $model
+     * @return void
+     * @throws Exception
+     */
+    public static function populateModelBySpoonacularModel(SpoonacularModel $spoonacularModel, Model &$model): void
+    {
+        switch (true) {
+            case $spoonacularModel instanceof SpoonacularRecipe:
+                if (!$model instanceof Recipe) {
+                    throw new Exception('Model [' . get_class($model) . '] is not compatible with Spoonacular Model [' . get_class($spoonacularModel) . '].');
+                }
+
+                $imageFilename = '';
+
+                if (!empty($spoonacularModel->getImage())) {
+                    $imageContents = file_get_contents($spoonacularModel->getImage());
+
+                    if (!empty($imageContents)) {
+                        file_put_contents(public_path('images/' . basename($spoonacularModel->getImage())), $imageContents);
+                        $imageFilename = basename($spoonacularModel->getImage());
+                    }
+                }
+
+                $model->title = $spoonacularModel->getTitle();
+                $model->description = $spoonacularModel->getInstructions();
+                $model->logo = $imageFilename;
+                break;
+        }
+    }
+
+    public function translateResults(array $results, string $instance): array
     {
         switch ($instance) {
             case self::INSTANCE_RECIPE:
@@ -43,7 +79,7 @@ class SpoonacularAdapter
     {
         $finalResults = [];
         foreach ($results as $result) {
-            $recipe = new Recipe();
+            $recipe = new SpoonacularRecipe();
             $recipe->setVegetarian($result['vegetarian']);
             $recipe->setVegan($result['vegan']);
             $recipe->setGlutenFree($result['glutenFree']);
