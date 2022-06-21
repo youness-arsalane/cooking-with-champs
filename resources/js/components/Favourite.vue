@@ -1,4 +1,5 @@
 <template>
+    <h1 class="text-center">Favourites</h1>
     <div class="container-fluid main-content">
         <div v-if="recipes && favourite" class="row main-content__recipe-row">
             <div v-for="recipe in recipes" @click="changeRoutes(recipe.id)">

@@ -47,7 +47,6 @@ export default {
             this.message.user_id = this.$store.getters.getUser.data.id
             this.message.parent_id = parentId
 
-            alert(parentId);
             await axios
                 .post(`http://127.0.0.1:8000/api/recipes/${this.$route.params.id}/message`, this.message)
                 .then(response => (
