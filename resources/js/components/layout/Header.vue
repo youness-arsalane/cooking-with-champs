@@ -25,9 +25,11 @@
                         <li v-for="navCategory in navCategories" class="nav-item">
                             <router-link :to="`/categories/${navCategory.id}`" class="nav-link">{{ navCategory.name }}</router-link>
                         </li>
-
                         <li v-if="loggedIn" class="nav-item">
-                            <div class="nav-link">Welkom {{ user?.name }}</div>
+                            <div class="nav-link">Welcome {{ user?.name }}</div>
+                        </li>
+                        <li v-if="loggedIn" class="nav-item">
+                            <div @click="logout" class="nav-link">logout</div>
                         </li>
                     </ul>
                 </div>
@@ -68,6 +70,10 @@ export default {
         user () {
             return this.$store.getters.getUser.data
         },
+
+        logout() {
+            this.$router.go()
+        }
     }
 }
 </script>
