@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <label>Image</label>
                                 <br>
-                                <input required type="file" accept="image/png, image/jpeg" @change="recipe.logo">
+                                <input type="file" accept="image/png, image/jpeg" @change="recipe.logo">
                             </div>
                             <div class="form-group" style="border:1px solid #CCCCCC;padding:1rem;">
                                 <h5>Categories</h5>
