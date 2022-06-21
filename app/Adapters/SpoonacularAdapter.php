@@ -1,13 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Adapters;
 
 use Illuminate\Support\Facades\Http;
 
-class SpoonacularAPI
+class SpoonacularAdapter
 {
     const BASE_URL = 'https://api.spoonacular.com/';
-    const API_KEY = '5613efb8396e4f989b5e61ac57866a48';
 
     public function getRandomRecipes(int $limit = 10): array
     {
@@ -19,7 +18,7 @@ class SpoonacularAPI
 
     private function executeRequest(string $method, string $endpoint, array $parameters): array
     {
-        $parameters['apiKey'] = self::API_KEY;
+        $parameters['apiKey'] = env('SPOONACULAR_API_KEY');
 
         $url = self::BASE_URL . $endpoint;
 

@@ -23,7 +23,7 @@
                             <router-link to="/categories" class="nav-link">Categories</router-link>
                         </li>
                         <li v-for="navCategory in navCategories" class="nav-item">
-                            <router-link :to="`/categories/${navCategory.id}`" class="nav-link">{{ navCategory.name }}</router-link>
+                            <router-link :to="`/category/${navCategory.id}`" class="nav-link">{{ navCategory.name }}</router-link>
                         </li>
 
                         <li v-if="loggedIn" class="nav-item">

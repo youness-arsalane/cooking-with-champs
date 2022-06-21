@@ -26,6 +26,16 @@
                             <div class="card-body">
                                 <p class="card-title text-primary">{{ comment.user.name }}</p>
                                 <p class="card-text">{{ comment.content }}</p>
+                                <div class="clearfix">
+                                    <div class="float-right">
+                                        <router-link to="/add-recipe" class="nav-link">Add recipe</router-link>
+                                        <a href="">Bewerken</a>
+                                        &nbsp;|&nbsp;
+                                        <a href="">Reageren</a>
+                                        &nbsp;|&nbsp;
+                                        <a href="">Verwijderen</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <button v-if="loggedIn" @click="changeRoutes(recipe.id, 'message')" type="button" class="btn btn-success mt-3">Place message</button>

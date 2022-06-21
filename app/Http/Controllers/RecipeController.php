@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
+use App\Models\RecipeCategory;
 use App\Models\RecipeComment;
 use App\Models\RecipeStep;
 use Illuminate\Http\Request;
@@ -35,6 +36,13 @@ class RecipeController extends Controller
         ], 200);
     }
 
+    public function categories($id)
+    {
+        return response()->json([
+            'categories' => Recipe::find($id)->categories()
+        ]);
+    }
+
     public function create(Request $request)
     {
         $formFields = $request->validate([
@@ -65,7 +73,7 @@ class RecipeController extends Controller
         $formFields['user_id'] = $request->get('user_id');
 
         $formFields['recipe_id'] = $id;
-        
+
         RecipeComment::create($formFields);
 
         return response()->json('Recipe comment successfully added!');
@@ -78,11 +86,6 @@ class RecipeController extends Controller
 
     public function update(Request $request, Recipe $recipe)
     {
-
-//        if($recipe->user_id != auth()->id()){
-//            abort('403', 'Unauthorized action');
-//        }
-
         $formFields = $request->validate([
             'title' => ['required'],
             'tags' => 'required',
@@ -94,6 +97,24 @@ class RecipeController extends Controller
         }
 
         $recipe->update($formFields);
+
+        $recipeCategories = Recipe::where('recipe_id', $recipe->id);
+        foreach ($recipeCategories as $recipeCategory) {
+            $recipeCategory->delete();
+        }
+
+        $categoryIds = (array)$request->all()['categoryIds'];
+        foreach (array_values($categoryIds) as $i => $categoryId) {
+            $formFields = [
+                'recipe_id' => $recipe->id,
+                'category_id' => $categoryId,
+                'position' => $i,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ];
+
+            RecipeCategory::create($formFields);
+        }
 
         return response()->json('Recipe update successfully!');
     }

@@ -22,13 +22,14 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            recipes: null,
-            user: this.$store.getters.getUser.data
+            category: null,
+            recipes: null
         }
     },
 
     mounted() {
-        this.getRecipes()
+        this.getCategory();
+        this.getRecipes();
     },
 
     methods: {
@@ -48,11 +49,19 @@ export default {
             }
         },
 
+        getCategory() {
+            axios
+                .get(`http://127.0.0.1:8000/api/category/${this.$route.params.id}`)
+                .then(response => {
+                    this.category = response.data.categories;
+                });
+        },
+
         getRecipes() {
             axios
-                .get('http://127.0.0.1:8000/api/recipes')
+                .get(`http://127.0.0.1:8000/api/category/${this.$route.params.id}/recipes`)
                 .then(response => {
-                    this.recipes = response.data.recipes.data;
+                    this.recipes = response.data.recipes;
                 });
         },
     }

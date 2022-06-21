@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -71,6 +72,13 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         return view('categories.edit', ['category' => $category]);
+    }
+
+    public function recipes($id)
+    {
+        return response()->json([
+            'recipes' => Category::find($id)->recipes()
+        ]);
     }
 
     public function update(Request $request, Category $category)

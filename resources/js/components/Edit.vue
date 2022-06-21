@@ -7,7 +7,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 mt-3 ml-auto mr-auto">
-                        <form @submit.prevent="addRecipe">
+                        <form @submit.prevent="saveRecipe">
                             <div class="form-group">
                                 <label>Title</label>
                                 <input required type="text" class="form-control" v-model="recipe.title">
@@ -20,6 +20,13 @@
                                 <label>Image</label>
                                 <br>
                                 <input required type="file" accept="image/png, image/jpeg" @change="recipe.logo">
+                            </div>
+                            <div class="form-group" style="border:1px solid #CCCCCC;padding:1rem;">
+                                <h5>Categories</h5>
+                                <div v-for="category in categories">
+                                    <input type="checkbox" :id="`category_${category.id}`" v-model="currentCategoryIds" :value="`${category.id}`">
+                                    <label :for="`category_${category.id}`" class="ml-1">{{ category.name }}</label>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Recipe Description</label>
@@ -41,11 +48,17 @@ export default {
     data() {
         return {
             recipe: {},
+            selected: {},
+            categories: [],
+            currentCategories: [],
+            currentCategoryIds: [],
         }
     },
 
     mounted() {
         this.getRecipe()
+        this.getCategories()
+        this.getCurrentCategories()
     },
 
     methods: {
@@ -57,7 +70,31 @@ export default {
                 });
         },
 
-        async addRecipe() {
+        getCategories() {
+            axios
+                .get('http://127.0.0.1:8000/api/categories')
+                .then(response => {
+                    this.categories = response.data.categories.data;
+                });
+        },
+
+        getCurrentCategories() {
+            axios
+                .get(`http://127.0.0.1:8000/api/recipes/${this.$route.params.id}/categories`)
+                .then(response => {
+                    this.currentCategories = response.data.categories;
+
+                    let currentCategoryIds = [];
+                    this.currentCategories.forEach(function (currentCategory) {
+                        currentCategoryIds.push(currentCategory.id);
+                    });
+
+                    this.currentCategoryIds = currentCategoryIds;
+                });
+        },
+
+        async saveRecipe() {
+            this.recipe.categoryIds = this.currentCategoryIds;
             await axios
                 .put(`http://127.0.0.1:8000/api/recipes/${this.$route.params.id}`, this.recipe)
                 .then(response => (

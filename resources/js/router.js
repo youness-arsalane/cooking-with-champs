@@ -43,6 +43,12 @@ const routes = [
         component: AddMessage,
     },
     {
+        path: '/recipe/:id/add-message',
+        name: 'add-message',
+        props: true,
+        component: AddMessage,
+    },
+    {
         path: '/login',
         name: 'login',
         component: Login,

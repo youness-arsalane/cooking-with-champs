@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Adapters\SpoonacularAdapter;
 use App\Models\Recipe;
-use App\SpoonacularAPI;
 
 class DebugController extends Controller
 {
     public function index()
     {
-        $spoonacularAPI = new SpoonacularAPI();
+        $SpoonacularAdapter = new SpoonacularAdapter();
 
-//        $spoonacularRecipes = $spoonacularAPI->getRandomRecipes(100);
+//        $spoonacularRecipes = $SpoonacularAdapter->getRandomRecipes(100);
 //        file_put_contents(base_path('random-recipes.json'), json_encode($spoonacularRecipes));
 //
 //        return;

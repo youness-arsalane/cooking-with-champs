@@ -40,6 +40,7 @@ Route::put('/recipes/{recipe}', [RecipeController::class, 'update']);
 Route::delete('/recipes/{id}', [RecipeController::class, 'destroy']);
 Route::get('/recipes/manage', [RecipeController::class, 'manage']);
 Route::get('/recipes/{id}', [RecipeController::class, 'show']);
+Route::get('/recipes/{id}/categories', [RecipeController::class, 'categories']);
 
 Route::get('/spoonacular/recipes', [SpoonacularController::class, 'recipes']);
 Route::post('/spoonacular/sync', [SpoonacularController::class, 'sync']);
@@ -49,14 +50,5 @@ Route::post('/categories/create', [CategoryController::class, 'create']);
 Route::get('/categories/{category}/edit', [CategoryController::class, 'edit']);
 Route::put('/categories/{category}', [CategoryController::class, 'update']);
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
-Route::get('/categories/{id}', [CategoryController::class, 'show']);
-
-/*
-Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories');
-Route::get('/admin/categories/add', [CategoryController::class, 'add'])->name('categories/add');
-Route::get('/admin/categories/edit/{id}', [CategoryController::class, 'edit'])->name('categories/edit');
-Route::post('/admin/categories/save/{id?}', [CategoryController::class, 'save'])->name('categories/save');
-Route::post('/admin/categories/saveImage/{id}', [CategoryController::class, 'saveImage'])->name('categories/saveImage    ');
-Route::get('/admin/categories/deleteImage/{id}', [CategoryController::class, 'deleteImage'])->name('categories/deleteImage  ');
-Route::get('/admin/categories/delete/{id}', [CategoryController::class, 'delete'])->name('categories/delete');*/
-
+Route::get('/category/{id}', [CategoryController::class, 'show']);
+Route::get('/category/{id}/recipes', [CategoryController::class, 'recipes']);

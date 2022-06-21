@@ -11,6 +11,7 @@ class Recipe extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'tags', 'logo', 'user_id'];
+    public $categoryIds;
 
     public function recipeSteps()
     {
@@ -20,6 +21,23 @@ class Recipe extends Model
     public function recipeComments()
     {
         return $this->hasMany(RecipeComment::class)->with('user');
+    }
+
+    public function categories()
+    {
+        $categories = [];
+
+        $recipeCategories = $this->hasMany(RecipeCategory::class)->orderBy('position')->getResults();
+        foreach ($recipeCategories as $recipeCategory) {
+            $currentCategories = $recipeCategory->hasMany(Category::class, 'id', 'category_id')->getResults();
+            foreach ($currentCategories as $category) {
+                if (!isset($categories[$category->id])) {
+                    $categories[] = $category;
+                }
+            }
+        }
+
+        return $categories;
     }
 
     public function scopeFilter($query, array $filters)
