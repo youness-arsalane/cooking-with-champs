@@ -73,7 +73,7 @@ export default {
 
         deleteRecipe(id) {
             axios
-                .delete(`http://localhost:8000/api/recipes/${id}`)
+                .delete(`http://127.0.0.1:8000/api/recipes/${id}`)
                 .then(response => {
                     this.$router.push('/')
                 });
@@ -81,7 +81,7 @@ export default {
 
         getRecipe() {
             axios
-                .get(`http://localhost:8000/api/recipes/${this.$route.params.id}`)
+                .get(`http://127.0.0.1:8000/api/recipes/${this.$route.params.id}`)
                 .then(response => {
                     console.log(response)
                     this.recipe = response.data.recipes;

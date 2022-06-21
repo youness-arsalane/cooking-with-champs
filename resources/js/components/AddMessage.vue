@@ -40,7 +40,7 @@ export default {
         async addMessage() {
             this.message.user_id = this.$store.getters.getUser.data.id
             await axios
-                .post(`http://localhost:8000/api/recipes/${this.$route.params.id}/message`, this.message)
+                .post(`http://127.0.0.1:8000/api/recipes/${this.$route.params.id}/message`, this.message)
                 .then(response => (
                     this.$router.push('/')
                 ))

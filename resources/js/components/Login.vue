@@ -37,7 +37,7 @@ export default {
     methods: {
         async loginUser() {
             await axios
-                .post('http://localhost:8000/api/login', this.login)
+                .post('http://127.0.0.1:8000/api/login', this.login)
                 .then(response => (
                     this.$store.dispatch('setLoggedIn'),
                         this.$store.dispatch('setUser', response),

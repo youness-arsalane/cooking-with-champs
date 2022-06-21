@@ -16,6 +16,16 @@
                         <li v-if="loggedIn && user?.role === 1" class="nav-item">
                             <router-link to="/add-recipe" class="nav-link">Add recipe</router-link>
                         </li>
+                        <li v-if="loggedIn && user?.role === 1" class="nav-item">
+                            <router-link to="/spoonacular" class="nav-link">Spoonacular</router-link>
+                        </li>
+                        <li v-if="loggedIn && user?.role === 1" class="nav-item">
+                            <router-link to="/categories" class="nav-link">Categories</router-link>
+                        </li>
+                        <li v-for="navCategory in navCategories" class="nav-item">
+                            <router-link :to="`/categories/${navCategory.id}`" class="nav-link">{{ navCategory.name }}</router-link>
+                        </li>
+
                         <li v-if="loggedIn" class="nav-item">
                             <div class="nav-link">Welkom {{ user?.name }}</div>
                         </li>
@@ -32,7 +42,24 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+    data() {
+        return {
+            navCategories: {},
+        }
+    },
+
+    mounted() {
+        axios
+            .get(`http://127.0.0.1:8000/api/categories`)
+            .then(response => {
+                this.navCategories = response.data.categories.data;
+                console.log(this.navCategories);
+            });
+    },
+
     computed: {
         loggedIn () {
             return this.$store.getters.getLoggedIn

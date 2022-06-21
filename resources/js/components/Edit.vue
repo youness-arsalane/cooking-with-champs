@@ -51,7 +51,7 @@ export default {
     methods: {
         getRecipe() {
             axios
-                .get(`http://localhost:8000/api/recipes/${this.$route.params.id}`)
+                .get(`http://127.0.0.1:8000/api/recipes/${this.$route.params.id}`)
                 .then(response => {
                     this.recipe = response.data.recipes;
                 });
@@ -59,7 +59,7 @@ export default {
 
         async addRecipe() {
             await axios
-                .put(`http://localhost:8000/api/recipes/${this.$route.params.id}`, this.recipe)
+                .put(`http://127.0.0.1:8000/api/recipes/${this.$route.params.id}`, this.recipe)
                 .then(response => (
                     this.$router.push('/')
                 ))

@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\RecipeController;
-use App\Models\Recipe;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
