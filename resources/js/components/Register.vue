@@ -45,7 +45,7 @@ export default {
     methods: {
         async registerUser() {
             await axios
-                .post('http://localhost:8000/api/register', this.register)
+                .post('http://127.0.0.1:8000/api/register', this.register)
                 .then(response => (
                     this.$router.push('/login')
                 ))

@@ -6,6 +6,12 @@ import Edit from "./components/Edit";
 import AddMessage from "./components/AddMessage";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Spoonacular from "./components/Spoonacular";
+import SpoonacularValidate from "./components/SpoonacularValidate";
+import Categories from "./components/Categories";
+import CategoryAdd from "./components/CategoryAdd";
+import CategoryDetail from "./components/CategoryDetail";
+import CategoryEdit from "./components/CategoryEdit";
 
 const routes = [
     {
@@ -46,6 +52,38 @@ const routes = [
         name: 'register',
         component: Register,
     },
+    {
+        path: '/spoonacular',
+        name: 'spoonacular',
+        component: Spoonacular,
+    },
+    {
+        path: '/spoonacular/validate',
+        name: 'spoonacular/validate',
+        component: SpoonacularValidate,
+    },
+    {
+        path: '/categories',
+        name: 'categories',
+        component: Categories
+    },
+    {
+        path: '/add-category',
+        name: 'add-category',
+        component: CategoryAdd
+    },
+    {
+        path: '/category/:id',
+        name: 'category',
+        props: true,
+        component: CategoryDetail,
+    },
+    {
+        path: '/category/edit/:id',
+        name: 'category-edit',
+        props: true,
+        component: CategoryEdit,
+    }
 ]
 
 const router = createRouter({
