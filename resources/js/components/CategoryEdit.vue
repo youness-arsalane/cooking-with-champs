@@ -13,7 +13,7 @@
                         </div>
                         <div class="form-group">
                             <label>Category Description</label>
-                            <textarea required class="form-control" rows="3" v-model="category.content"></textarea>
+                            <textarea required class="form-control" rows="15" v-model="category.content"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Image</label>
@@ -52,7 +52,7 @@ export default {
     methods: {
         getCategory() {
             axios
-                .get(`http://127.0.0.1:8000/api/categories/${this.$route.params.id}`)
+                .get(`http://127.0.0.1:8000/api/category/${this.$route.params.id}`)
                 .then(response => {
                     this.category = response.data.categories;
                 });
@@ -61,9 +61,9 @@ export default {
         async saveCategory() {
             await axios
                 .put(`http://127.0.0.1:8000/api/categories/${this.$route.params.id}`, this.category)
-                .then(response => (
-                    this.$router.push('/categories')
-                ))
+                .then(response => {
+                    this.$router.push('/categories');
+                })
                 .catch(error => console.log(error))
         }
     }

@@ -13,7 +13,8 @@
                                 <textarea required class="form-control" v-model="message.content"></textarea>
                             </div>
                             <input name="user_id" style="display: none;" :value="message.user_id"/>
-                            <button type="submit" class="btn btn-danger">Edit</button>
+                            <router-link :to="`/recipe/${message.recipe_id}`" class="btn btn-outline-primary">Back</router-link>
+                            <button type="submit" class="btn btn-danger ml-2">Edit</button>
                         </form>
                     </div>
                 </div>

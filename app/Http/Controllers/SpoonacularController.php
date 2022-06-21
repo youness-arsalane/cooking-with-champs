@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Adapters\SpoonacularAdapter;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,10 @@ class SpoonacularController extends Controller
 {
     public function recipes()
     {
-        $spoonacularRecipes = json_decode(file_get_contents(base_path('random-recipes.json')), true);
+        $SpoonacularAdapter = new SpoonacularAdapter();
+
+        $spoonacularRecipes = $SpoonacularAdapter->getRandomRecipes(100);
+
         shuffle($spoonacularRecipes);
         return response()->json($spoonacularRecipes);
     }

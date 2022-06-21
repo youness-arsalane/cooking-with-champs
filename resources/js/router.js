@@ -39,13 +39,7 @@ const routes = [
         component: Edit,
     },
     {
-        path: '/recipe/:id/add-message',
-        name: 'add-message',
-        props: true,
-        component: AddMessage,
-    },
-    {
-        path: '/recipe/:id/add-message',
+        path: '/recipe/:id/add-message/:parentId?',
         name: 'add-message',
         props: true,
         component: AddMessage,

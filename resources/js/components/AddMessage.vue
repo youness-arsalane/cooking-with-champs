@@ -10,7 +10,7 @@
                         <form @submit.prevent="addMessage">
                             <div class="form-group">
                                 <label>Message</label>
-                                <textarea required class="form-control" rows="3" v-model="message.content"></textarea>
+                                <textarea required class="form-control" rows="15" v-model="message.content"></textarea>
                             </div>
                             <input name="user_id" style="display: none;" :value="message.user_id"/>
                             <button type="submit" class="btn btn-danger">Create</button>
@@ -38,11 +38,20 @@ export default {
 
     methods: {
         async addMessage() {
+            let parentId = '';
+
+            if (typeof this.$route.params.parentId !== 'undefined') {
+                parentId = this.$route.params.parentId;
+            }
+
             this.message.user_id = this.$store.getters.getUser.data.id
+            this.message.parent_id = parentId
+
+            alert(parentId);
             await axios
                 .post(`http://127.0.0.1:8000/api/recipes/${this.$route.params.id}/message`, this.message)
                 .then(response => (
-                    this.$router.push('/')
+                    this.$router.push(`/recipe/${this.$route.params.id}`)
                 ))
                 .catch(error => console.log(error))
         }

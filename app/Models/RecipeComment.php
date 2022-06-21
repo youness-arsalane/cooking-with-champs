@@ -15,4 +15,9 @@ class RecipeComment extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function children()
+    {
+        return $this->hasMany(RecipeComment::class, 'parent_id', 'id');
+    }
 }

@@ -1,4 +1,5 @@
 <template>
+    <h1 class="text-center">Welcome {{ user?.name }}!</h1>
     <div class="container-fluid main-content">
         <div class="row main-content__recipe-row">
             <nav class="navbar navbar-light bg-light">

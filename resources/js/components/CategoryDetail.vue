@@ -1,4 +1,14 @@
 <template>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <img class="" :src="`/images/${category?.image_filename}`" alt="banner" style="width:100%;">
+        </div>
+        <div class="col-12 mt-3">
+            <h1>{{ category?.name }}</h1>
+            <p>{{ category?.content }}</p>
+        </div>
+    </div>
+
     <div class="container-fluid main-content">
         <div class="row main-content__recipe-row">
             <nav class="navbar navbar-light bg-light">

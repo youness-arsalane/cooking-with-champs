@@ -6,7 +6,7 @@
         </h2>
         <p class="mb-4">Here you can make changes to your recipe called {{$recipe->title}}</p>
     </header>
-    
+
     <form method="POST" action="/recipes/{{$recipe->id}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -25,7 +25,7 @@
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
             @enderror
         </div>
-    
+
         <div class="mb-6">
             <label for="tags" class="inline-block text-lg mb-2">
                 Tags (Comma Separated)
@@ -40,7 +40,7 @@
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
             @enderror
         </div>
-    
+
         <div class="mb-6">
             <label for="logo" class="inline-block text-lg mb-2">
                 Company Logo
@@ -59,7 +59,7 @@
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
             @enderror
         </div>
-    
+
         <div class="mb-6">
             <label
                 for="description"
@@ -70,24 +70,24 @@
             <textarea
                 class="border border-gray-200 rounded p-2 w-full"
                 name="description"
-                rows="10"
+                rows="15"
                 placeholder="Include ingredients, steps, cooking time, etc"
                 >{{$recipe->description}}</textarea>
             @error('description')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
             @enderror
         </div>
-    
+
         <div class="mb-6">
             <button
                 class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
             >
                 Update Recipe
             </button>
-            
+
             <a href="/" class="text-black ml-4"> Back </a>
         </div>
     </form>
     </x-card>
-    
+
     </x-layout>

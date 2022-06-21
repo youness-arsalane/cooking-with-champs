@@ -14,7 +14,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Category Description</label>
-                                <textarea required class="form-control" rows="3" v-model="category.content"></textarea>
+                                <textarea required class="form-control" rows="15" v-model="category.content"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
@@ -28,7 +28,8 @@
                                     <option value="0">Inactive</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-danger">Create</button>
+                            <router-link to="/categories" class="btn btn-outline-primary">Back</router-link>
+                            <button type="submit" class="btn btn-danger ml-2">Create</button>
                         </form>
                     </div>
                 </div>

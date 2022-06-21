@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SpoonacularController;
@@ -34,7 +35,8 @@ Route::post('logout', [LoginController::class, 'logout']);
 Route::post('/recipes/create', [RecipeController::class, 'create']);
 Route::get('/recipes/message/{id}', [RecipeController::class, 'getComment']);
 Route::put('/recipes/message/{comment}', [RecipeController::class, 'editComment']);
-Route::get('/recipes/{id}/message/{', [RecipeController::class, 'addComment']);
+Route::post('/recipes/{id}/message', [RecipeController::class, 'addComment']);
+Route::delete('/recipes/message/{id}', [RecipeController::class, 'deleteComment']);
 Route::get('/recipes', [RecipeController::class, 'index']);
 Route::get('/recipes/filter/{name}', [RecipeController::class, 'filter']);
 Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit']);

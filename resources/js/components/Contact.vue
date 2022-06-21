@@ -14,7 +14,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Message</label>
-                                <textarea required class="form-control" rows="3" v-model="contact.message"></textarea>
+                                <textarea required class="form-control" rows="15" v-model="contact.message"></textarea>
                             </div>
                             <button type="submit" class="btn btn-danger">Create</button>
                         </form>

@@ -31,9 +31,31 @@ class RecipeController extends Controller
 
     public function show($id)
     {
+        $recipe = Recipe::with('recipeComments')->get()->find($id);
+        $recipeResponse = json_decode(json_encode($recipe), true);
+
+        foreach ($recipeResponse['recipe_comments'] as $key => $recipe_comment) {
+            if ($recipe_comment['parent_id'] !== null) {
+                unset($recipeResponse['recipe_comments'][$key]);
+                continue;
+            }
+
+            foreach ($recipe->recipeComments()->getResults() as $recipeComment) {
+                if ((string)$recipe_comment['id'] === (string)$recipeComment->id) {
+                    $recipeResponse['recipe_comments'][$key]['children'] = $recipeComment->children()->getResults();
+
+                    foreach ($recipeResponse['recipe_comments'][$key]['children'] as $key2 => $childComment) {
+                        $recipeResponse['recipe_comments'][$key]['children'][$key2]['user'] = $recipeComment->user()->getResults();
+
+                    }
+                    break;
+                }
+            }
+        }
+
         return response()->json([
-            'recipes' => Recipe::with('recipeComments')->get()->find($id)
-        ], 200);
+            'recipes' => $recipeResponse
+        ]);
     }
 
     public function categories($id)
@@ -60,6 +82,14 @@ class RecipeController extends Controller
         $comment->update($formFields);
 
         return response()->json('Comment updated successfully!');
+    }
+
+    public function deleteComment(Request $request, $id)
+    {
+        $comment = RecipeComment::get()->find($id);
+        $comment->delete();
+
+        return response()->json('Comment deleted successfully!');
     }
 
     public function create(Request $request)
@@ -89,7 +119,7 @@ class RecipeController extends Controller
         ]);
 
         $formFields['user_id'] = $request->get('user_id');
-
+        $formFields['parent_id'] = $request->get('parent_id');
         $formFields['recipe_id'] = $id;
 
         RecipeComment::create($formFields);

@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Recipe Description</label>
-                                <textarea required class="form-control" rows="3" v-model="recipe.description"></textarea>
+                                <textarea required class="form-control" rows="15" v-model="recipe.description"></textarea>
                             </div>
                             <button type="submit" class="btn btn-danger">Edit</button>
                         </form>
