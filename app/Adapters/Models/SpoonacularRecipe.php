@@ -282,12 +282,12 @@ class SpoonacularRecipe extends SpoonacularModel implements JsonSerializable
         $this->creditsText = $creditsText;
     }
 
-    public function getLicense(): string
+    public function getLicense(): ?string
     {
         return $this->license;
     }
 
-    public function setLicense(string $license): void
+    public function setLicense(?string $license): void
     {
         $this->license = $license;
     }
