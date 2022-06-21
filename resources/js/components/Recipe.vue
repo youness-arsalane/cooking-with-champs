@@ -26,15 +26,11 @@
                             <div class="card-body">
                                 <p class="card-title text-primary">{{ comment.user.name }}</p>
                                 <p class="card-text">{{ comment.content }}</p>
-                                <button v-if="loggedIn && comment.user_id === user?.id" @click="changeRouteEditMessage(recipe.id, comment.id)" type="button" class="btn btn-primary mt-3">Edit message</button>
                                 <div class="clearfix">
                                     <div class="float-right">
-                                        <router-link to="/add-recipe" class="nav-link">Add recipe</router-link>
-                                        <a href="">Bewerken</a>
-                                        &nbsp;|&nbsp;
-                                        <a href="">Reageren</a>
-                                        &nbsp;|&nbsp;
-                                        <a href="">Verwijderen</a>
+                                        <button type="button" class="btn btn-primary mt-3" v-if="loggedIn && comment.user_id === user?.id" @click="changeRouteEditMessage(recipe.id, comment.id)">Edit</button>
+                                        <button type="button" class="btn btn-primary mt-3" v-if="loggedIn && comment.user_id === user?.id" @click="changeRouteEditMessage(recipe.id, comment.id)">React (does not work)</button>
+                                        <button type="button" class="btn btn-primary mt-3" v-if="loggedIn && comment.user_id === user?.id" @click="changeRouteEditMessage(recipe.id, comment.id)">Delete (does not work)</button>
                                     </div>
                                 </div>
                             </div>
