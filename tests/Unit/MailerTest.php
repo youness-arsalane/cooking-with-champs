@@ -8,9 +8,10 @@ use Tests\TestCase;
 
 class MailerTest extends TestCase
 {
-    public function mail_server_test()
+    public function test_mail_server()
     {
         Mail::fake();
         Mail::assertNotSent(ContactForm::class);
+        self::assertTrue(true);
     }
 }

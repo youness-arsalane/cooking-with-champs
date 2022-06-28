@@ -22,7 +22,7 @@ class Recipe extends Model
 
     public function recipeComments()
     {
-        return $this->hasMany(RecipeComment::class)->with('user')->get();
+        return $this->hasMany(RecipeComment::class)->with('user');
     }
 
     /**

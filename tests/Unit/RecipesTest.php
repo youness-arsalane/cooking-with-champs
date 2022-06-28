@@ -11,25 +11,25 @@ use Tests\TestCase;
 
 class RecipesTest extends TestCase
 {
-    public function test_place_recipes_in_category_test()
+    public function test_place_recipes_in_category()
     {
         $user = new User();
         $user->role = 1;
         $user->name = 'Youness Test';
-        $user->email = 'youness-test-' . date('Y-m-d-H-i-s'). '@gmail.com';
+        $user->email = 'youness-test-' . date('Y-m-d-H-i-s') . ' - ' . rand(). '@gmail.com';
         $user->is_admin = 1;
 
         $user->save();
 
         $recipe = new Recipe();
         $recipe->user_id = $user->id;
-        $recipe->title = 'Test recipe - ' . date('Y-m-d-H-i-s');
+        $recipe->title = 'Test recipe - ' . date('Y-m-d-H-i-s') . ' - ' . rand();
         $recipe->description = 'Test description';
 
         $recipe->save();
 
         $category = new Category();
-        $category->name = 'Test category - ' . date('Y-m-d-H-i-s');
+        $category->name = 'Test category - ' . date('Y-m-d-H-i-s') . ' - ' . rand();
         $category->content = 'Test content';
         $category->active = true;
 
@@ -57,19 +57,19 @@ class RecipesTest extends TestCase
         $user->delete();
     }
 
-    public function test_post_comments_under_recipe_test()
+    public function test_post_comments_under_recipe()
     {
         $user = new User();
         $user->role = 1;
         $user->name = 'Youness Test';
-        $user->email = 'youness-test-' . date('Y-m-d-H-i-s'). '@gmail.com';
+        $user->email = 'youness-test-' . date('Y-m-d-H-i-s') . ' - ' . rand(). '@gmail.com';
         $user->is_admin = 1;
 
         $user->save();
 
         $recipe = new Recipe();
         $recipe->user_id = $user->id;
-        $recipe->title = 'Test recipe - ' . date('Y-m-d-H-i-s');
+        $recipe->title = 'Test recipe - ' . date('Y-m-d-H-i-s') . ' - ' . rand();
         $recipe->description = 'Test description';
 
         $recipe->save();
@@ -82,7 +82,7 @@ class RecipesTest extends TestCase
         $recipeComment->save();
 
         $found = false;
-        foreach ($recipe->recipeComments() as $currentRecipeComment) {
+        foreach ($recipe->recipeComments()->getResults() as $currentRecipeComment) {
             if ($recipeComment->id === $currentRecipeComment->id) {
                 $found = true;
                 break;

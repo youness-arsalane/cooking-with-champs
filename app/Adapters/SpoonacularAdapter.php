@@ -58,7 +58,7 @@ class SpoonacularAdapter
                 }
 
                 $model->title = $spoonacularModel->getTitle();
-                $model->description = $spoonacularModel->getInstructions();
+                $model->description = $spoonacularModel->getInstructions() ?? 'N/A';
                 $model->logo = $imageFilename;
                 break;
         }

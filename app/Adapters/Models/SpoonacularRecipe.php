@@ -6,115 +6,115 @@ use JsonSerializable;
 
 class SpoonacularRecipe extends SpoonacularModel implements JsonSerializable
 {
-    /* @var $vegetarian boolean */
+    /* @var $vegetarian ?boolean */
     private $vegetarian;
 
-    /* @var $vegan boolean */
+    /* @var $vegan ?boolean */
     private $vegan;
 
-    /* @var $glutenFree boolean */
+    /* @var $glutenFree ?boolean */
     private $glutenFree;
 
-    /* @var $dairyFree boolean */
+    /* @var $dairyFree ?boolean */
     private $dairyFree;
 
-    /* @var $veryHealthy boolean */
+    /* @var $veryHealthy ?boolean */
     private $veryHealthy;
 
-    /* @var $cheap boolean */
+    /* @var $cheap ?boolean */
     private $cheap;
 
-    /* @var $veryPopular boolean */
+    /* @var $veryPopular ?boolean */
     private $veryPopular;
 
-    /* @var $sustainable boolean */
+    /* @var $sustainable ?boolean */
     private $sustainable;
 
-    /* @var $lowFodmap boolean */
+    /* @var $lowFodmap ?boolean */
     private $lowFodmap;
 
-    /* @var $weightWatcherSmartPoints int */
+    /* @var $weightWatcherSmartPoints ?int */
     private $weightWatcherSmartPoints;
 
-    /* @var $gaps string */
+    /* @var $gaps ?string */
     private $gaps;
 
-    /* @var $preparationMinutes int */
+    /* @var $preparationMinutes ?int */
     private $preparationMinutes;
 
-    /* @var $cookingMinutes int */
+    /* @var $cookingMinutes ?int */
     private $cookingMinutes;
 
-    /* @var $aggregateLikes int */
+    /* @var $aggregateLikes ?int */
     private $aggregateLikes;
 
-    /* @var $healthScore int */
+    /* @var $healthScore ?int */
     private $healthScore;
 
     /* @var $creditsText ?string */
     private $creditsText;
 
-    /* @var $license string */
+    /* @var $license ?string */
     private $license;
 
-    /* @var $sourceName string */
+    /* @var $sourceName ?string */
     private $sourceName;
 
-    /* @var $pricePerServing float */
+    /* @var $pricePerServing ?float */
     private $pricePerServing;
 
-    /* @var $extendedIngredients array */
+    /* @var $extendedIngredients ?array */
     private $extendedIngredients;
 
-    /* @var $id int */
+    /* @var $id ?int */
     private $id;
 
-    /* @var $title string */
+    /* @var $title ?string */
     private $title;
 
-    /* @var $readyInMinutes int */
+    /* @var $readyInMinutes ?int */
     private $readyInMinutes;
 
-    /* @var $servings int */
+    /* @var $servings ?int */
     private $servings;
 
-    /* @var $sourceUrl string */
+    /* @var $sourceUrl ?string */
     private $sourceUrl;
 
-    /* @var $openLicense int */
+    /* @var $openLicense ?int */
     private $openLicense;
 
-    /* @var $image string */
+    /* @var $image ?string */
     private $image;
 
-    /* @var $imageType string */
+    /* @var $imageType ?string */
     private $imageType;
 
-    /* @var $summary string */
+    /* @var $summary ?string */
     private $summary;
 
-    /* @var $cuisines array */
+    /* @var $cuisines ?array */
     private $cuisines;
 
-    /* @var $dishTypes array */
+    /* @var $dishTypes ?array */
     private $dishTypes;
 
-    /* @var $diets array */
+    /* @var $diets ?array */
     private $diets;
 
-    /* @var $occasions array */
+    /* @var $occasions ?array */
     private $occasions;
 
-    /* @var $instructions string */
+    /* @var $instructions ?string */
     private $instructions;
 
-    /* @var $instructions array */
+    /* @var $instructions ?array */
     private $analyzedInstructions;
 
     /* @var $originalId ?int */
     private $originalId;
 
-    /* @var $spoonacularSourceUrl string */
+    /* @var $spoonacularSourceUrl ?string */
     private $spoonacularSourceUrl;
 
     public function __construct(array $data = [])
@@ -122,152 +122,152 @@ class SpoonacularRecipe extends SpoonacularModel implements JsonSerializable
         $this->populateByData($data);
     }
 
-    public function isVegetarian(): bool
+    public function isVegetarian(): ?bool
     {
         return $this->vegetarian;
     }
 
-    public function setVegetarian(bool $vegetarian): void
+    public function setVegetarian(?bool $vegetarian): void
     {
         $this->vegetarian = $vegetarian;
     }
 
-    public function isVegan(): bool
+    public function isVegan(): ?bool
     {
         return $this->vegan;
     }
 
-    public function setVegan(bool $vegan): void
+    public function setVegan(?bool $vegan): void
     {
         $this->vegan = $vegan;
     }
 
-    public function isGlutenFree(): bool
+    public function isGlutenFree(): ?bool
     {
         return $this->glutenFree;
     }
 
-    public function setGlutenFree(bool $glutenFree): void
+    public function setGlutenFree(?bool $glutenFree): void
     {
         $this->glutenFree = $glutenFree;
     }
 
-    public function isDairyFree(): bool
+    public function isDairyFree(): ?bool
     {
         return $this->dairyFree;
     }
 
-    public function setDairyFree(bool $dairyFree): void
+    public function setDairyFree(?bool $dairyFree): void
     {
         $this->dairyFree = $dairyFree;
     }
 
-    public function isVeryHealthy(): bool
+    public function isVeryHealthy(): ?bool
     {
         return $this->veryHealthy;
     }
 
-    public function setVeryHealthy(bool $veryHealthy): void
+    public function setVeryHealthy(?bool $veryHealthy): void
     {
         $this->veryHealthy = $veryHealthy;
     }
 
-    public function isCheap(): bool
+    public function isCheap(): ?bool
     {
         return $this->cheap;
     }
 
-    public function setCheap(bool $cheap): void
+    public function setCheap(?bool $cheap): void
     {
         $this->cheap = $cheap;
     }
 
-    public function isVeryPopular(): bool
+    public function isVeryPopular(): ?bool
     {
         return $this->veryPopular;
     }
 
-    public function setVeryPopular(bool $veryPopular): void
+    public function setVeryPopular(?bool $veryPopular): void
     {
         $this->veryPopular = $veryPopular;
     }
 
-    public function isSustainable(): bool
+    public function isSustainable(): ?bool
     {
         return $this->sustainable;
     }
 
-    public function setSustainable(bool $sustainable): void
+    public function setSustainable(?bool $sustainable): void
     {
         $this->sustainable = $sustainable;
     }
 
-    public function isLowFodmap(): bool
+    public function isLowFodmap(): ?bool
     {
         return $this->lowFodmap;
     }
 
-    public function setLowFodmap(bool $lowFodmap): void
+    public function setLowFodmap(?bool $lowFodmap): void
     {
         $this->lowFodmap = $lowFodmap;
     }
 
-    public function getWeightWatcherSmartPoints(): int
+    public function getWeightWatcherSmartPoints(): ?int
     {
         return $this->weightWatcherSmartPoints;
     }
 
-    public function setWeightWatcherSmartPoints(int $weightWatcherSmartPoints): void
+    public function setWeightWatcherSmartPoints(?int $weightWatcherSmartPoints): void
     {
         $this->weightWatcherSmartPoints = $weightWatcherSmartPoints;
     }
 
-    public function getGaps(): string
+    public function getGaps(): ?string
     {
         return $this->gaps;
     }
 
-    public function setGaps(string $gaps): void
+    public function setGaps(?string $gaps): void
     {
         $this->gaps = $gaps;
     }
 
-    public function getPreparationMinutes(): int
+    public function getPreparationMinutes(): ?int
     {
         return $this->preparationMinutes;
     }
 
-    public function setPreparationMinutes(int $preparationMinutes): void
+    public function setPreparationMinutes(?int $preparationMinutes): void
     {
         $this->preparationMinutes = $preparationMinutes;
     }
 
-    public function getCookingMinutes(): int
+    public function getCookingMinutes(): ?int
     {
         return $this->cookingMinutes;
     }
 
-    public function setCookingMinutes(int $cookingMinutes): void
+    public function setCookingMinutes(?int $cookingMinutes): void
     {
         $this->cookingMinutes = $cookingMinutes;
     }
 
-    public function getAggregateLikes(): int
+    public function getAggregateLikes(): ?int
     {
         return $this->aggregateLikes;
     }
 
-    public function setAggregateLikes(int $aggregateLikes): void
+    public function setAggregateLikes(?int $aggregateLikes): void
     {
         $this->aggregateLikes = $aggregateLikes;
     }
 
-    public function getHealthScore(): int
+    public function getHealthScore(): ?int
     {
         return $this->healthScore;
     }
 
-    public function setHealthScore(int $healthScore): void
+    public function setHealthScore(?int $healthScore): void
     {
         $this->healthScore = $healthScore;
     }
@@ -302,172 +302,172 @@ class SpoonacularRecipe extends SpoonacularModel implements JsonSerializable
         $this->sourceName = $sourceName;
     }
 
-    public function getPricePerServing(): float
+    public function getPricePerServing(): ?float
     {
         return $this->pricePerServing;
     }
 
-    public function setPricePerServing(float $pricePerServing): void
+    public function setPricePerServing(?float $pricePerServing): void
     {
         $this->pricePerServing = $pricePerServing;
     }
 
-    public function getExtendedIngredients(): array
+    public function getExtendedIngredients(): ?array
     {
         return $this->extendedIngredients;
     }
 
-    public function setExtendedIngredients(array $extendedIngredients): void
+    public function setExtendedIngredients(?array $extendedIngredients): void
     {
         $this->extendedIngredients = $extendedIngredients;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setTitle(string $title): void
+    public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
 
-    public function getReadyInMinutes(): int
+    public function getReadyInMinutes(): ?int
     {
         return $this->readyInMinutes;
     }
 
-    public function setReadyInMinutes(int $readyInMinutes): void
+    public function setReadyInMinutes(?int $readyInMinutes): void
     {
         $this->readyInMinutes = $readyInMinutes;
     }
 
-    public function getServings(): int
+    public function getServings(): ?int
     {
         return $this->servings;
     }
 
-    public function setServings(int $servings): void
+    public function setServings(?int $servings): void
     {
         $this->servings = $servings;
     }
 
-    public function getSourceUrl(): string
+    public function getSourceUrl(): ?string
     {
         return $this->sourceUrl;
     }
 
-    public function setSourceUrl(string $sourceUrl): void
+    public function setSourceUrl(?string $sourceUrl): void
     {
         $this->sourceUrl = $sourceUrl;
     }
 
-    public function getOpenLicense(): int
+    public function getOpenLicense(): ?int
     {
         return $this->openLicense;
     }
 
-    public function setOpenLicense(int $openLicense): void
+    public function setOpenLicense(?int $openLicense): void
     {
         $this->openLicense = $openLicense;
     }
 
-    public function getImage(): string
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(string $image): void
+    public function setImage(?string $image): void
     {
         $this->image = $image;
     }
 
-    public function getImageType(): string
+    public function getImageType(): ?string
     {
         return $this->imageType;
     }
 
-    public function setImageType(string $imageType): void
+    public function setImageType(?string $imageType): void
     {
         $this->imageType = $imageType;
     }
 
-    public function getSummary(): string
+    public function getSummary(): ?string
     {
         return $this->summary;
     }
 
-    public function setSummary(string $summary): void
+    public function setSummary(?string $summary): void
     {
         $this->summary = $summary;
     }
 
-    public function getCuisines(): array
+    public function getCuisines(): ?array
     {
         return $this->cuisines;
     }
 
-    public function setCuisines(array $cuisines): void
+    public function setCuisines(?array $cuisines): void
     {
         $this->cuisines = $cuisines;
     }
 
-    public function getDishTypes(): array
+    public function getDishTypes(): ?array
     {
         return $this->dishTypes;
     }
 
-    public function setDishTypes(array $dishTypes): void
+    public function setDishTypes(?array $dishTypes): void
     {
         $this->dishTypes = $dishTypes;
     }
 
-    public function getDiets(): array
+    public function getDiets(): ?array
     {
         return $this->diets;
     }
 
-    public function setDiets(array $diets): void
+    public function setDiets(?array $diets): void
     {
         $this->diets = $diets;
     }
 
-    public function getOccasions(): array
+    public function getOccasions(): ?array
     {
         return $this->occasions;
     }
 
-    public function setOccasions(array $occasions): void
+    public function setOccasions(?array $occasions): void
     {
         $this->occasions = $occasions;
     }
 
-    public function getInstructions(): string
+    public function getInstructions(): ?string
     {
         return $this->instructions;
     }
 
-    public function setInstructions(string $instructions): void
+    public function setInstructions(?string $instructions): void
     {
         $this->instructions = $instructions;
     }
 
-    public function getAnalyzedInstructions(): array
+    public function getAnalyzedInstructions(): ?array
     {
         return $this->analyzedInstructions;
     }
 
-    public function setAnalyzedInstructions(array $analyzedInstructions): void
+    public function setAnalyzedInstructions(?array $analyzedInstructions): void
     {
         $this->analyzedInstructions = $analyzedInstructions;
     }
@@ -482,17 +482,17 @@ class SpoonacularRecipe extends SpoonacularModel implements JsonSerializable
         $this->originalId = $originalId;
     }
 
-    public function getSpoonacularSourceUrl(): string
+    public function getSpoonacularSourceUrl(): ?string
     {
         return $this->spoonacularSourceUrl;
     }
 
-    public function setSpoonacularSourceUrl(string $spoonacularSourceUrl): void
+    public function setSpoonacularSourceUrl(?string $spoonacularSourceUrl): void
     {
         $this->spoonacularSourceUrl = $spoonacularSourceUrl;
     }
 
-    public function populateByData(array $data): void
+    public function populateByData(?array $data): void
     {
         foreach ($data as $key => $value) {
             $setter = 'set' . ucfirst($key);
@@ -502,7 +502,7 @@ class SpoonacularRecipe extends SpoonacularModel implements JsonSerializable
         };
     }
 
-    public function jsonSerialize(): array
+    public function jsonSerialize(): ?array
     {
         return [
             'vegetarian' => $this->isVegetarian(),
